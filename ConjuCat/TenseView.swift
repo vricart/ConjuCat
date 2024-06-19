@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TenseView: View {
     var title: String
-    var conjugations: [String: String]
+    var conjugations: [String: Conjugation]
     var language: String
 
     private var personOrder: [String] {
@@ -26,18 +26,16 @@ struct TenseView: View {
     var body: some View {
         VStack(alignment: .leading) {
             if !title.isEmpty {
-                
-                HStack {    
+                HStack {
                     Text(title)
                         .font(.customFont(font: .montserrat, style: .bold, size: .title3))
                 }
                 .padding(.bottom, 12)
             }
-            
+
             ForEach(personOrder, id: \.self) { person in
                 if let conjugation = conjugations[person] {
                     HStack {
-                        
                         Text(person)
                             .font(.customFont(font: .montserrat, style: .bold, size: .body))
                             .foregroundColor(.greyColor)
@@ -45,8 +43,9 @@ struct TenseView: View {
                         
                         Spacer()
                         
-                        Text(conjugation)
+                        Text(conjugation.text)
                             .font(.customFont(font: .montserrat, style: .medium, size: .body))
+                            .foregroundColor(conjugation.isIrregular ? .red : .black) // Highlight irregular conjugations in red
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading)
                     }
@@ -58,6 +57,14 @@ struct TenseView: View {
     }
 }
 
+
 #Preview {
-    TenseView(title: "Present", conjugations: ["yo": "soy", "tú": "eres", "él/ella": "es", "nosotros": "somos", "vosotros": "sois", "ellos/ellas": "son"], language: "Spanish")
+    TenseView(title: "Present", conjugations: [
+        "yo": Conjugation(text: "soy", isIrregular: true),
+        "tú": Conjugation(text: "eres", isIrregular: true),
+        "él/ella": Conjugation(text: "es", isIrregular: true),
+        "nosotros": Conjugation(text: "somos", isIrregular: true),
+        "vosotros": Conjugation(text: "sois", isIrregular: true),
+        "ellos/ellas": Conjugation(text: "son", isIrregular: true)
+    ], language: "Spanish")
 }

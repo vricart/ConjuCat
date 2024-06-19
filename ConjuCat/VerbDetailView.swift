@@ -93,7 +93,7 @@ struct VerbDetailView: View {
                                     hideKeyboard()
                                     loadVerbDetails()
                                 }) {
-                                    Text(verb)
+                                    Text(verb.capitalized)
                                 }
                             }
                         }
@@ -117,7 +117,6 @@ struct VerbDetailView: View {
                             VStack(alignment: .leading) {
                                 Text(details.verb.capitalized)
                                     .font(.customFont(font: .montserrat, style: .bold, size: .largeTitle))
-                                    .padding(.bottom, 1)
                                 
                                 Text(details.translation)
                                     .font(.customFont(font: .montserrat, style: .medium, size: .title))
@@ -161,7 +160,7 @@ struct VerbDetailView: View {
                                     VStack(alignment: .leading) {
                                         Text("INDICATIVE")
                                             .font(.customFont(font: .montserrat, style: .bold, size: .title3))
-                                            .padding(.bottom, 10)
+                                            .padding(.bottom, 2)
                                         
                                         // Present Tense
                                         TenseView(title: "Present", conjugations: details.indicativePresent, language: selectedLanguage)
@@ -179,27 +178,30 @@ struct VerbDetailView: View {
                                 
                                 // Section 4: Subjunctive Tenses
                                 Section {
-                                    VStack(alignment: .leading) {
-                                        Text("SUBJUNCTIVE")
-                                            .font(.customFont(font: .montserrat, style: .bold, size: .title3))
-                                            .padding(.bottom, 10)
-                                        
-                                        // Present Tense
-                                        TenseView(title: "Present", conjugations: details.subjunctivePresent, language: selectedLanguage)
-                                        // Imperfect Tense
-                                        TenseView(title: "Imperfect", conjugations: details.subjunctiveImperfect, language: selectedLanguage)
-                                        // Future Tense
-                                        TenseView(title: "Future", conjugations: details.subjunctiveFuture, language: selectedLanguage)
-                                    }
-                                }
-                                .padding()
+                                                                    VStack(alignment: .leading) {
+                                                                        Text("SUBJUNCTIVE")
+                                                                            .font(.customFont(font: .montserrat, style: .bold, size: .title3))
+                                                                            .padding(.bottom, 2)
+                                                                        
+                                                                        // Present Tense
+                                                                        TenseView(title: "Present", conjugations: details.subjunctivePresent, language: selectedLanguage)
+                                                                        // Imperfect Tense
+                                                                        TenseView(title: "Imperfect", conjugations: details.subjunctiveImperfect, language: selectedLanguage)
+                                                                        
+                                                                        // Conditional rendering of the Future Tense
+                                                                        if selectedLanguage == "Spanish" {
+                                                                            TenseView(title: "Future", conjugations: details.subjunctiveFuture, language: selectedLanguage)
+                                                                        }
+                                                                    }
+                                                                }
+                                                                .padding()
                                 
                                 // Section 5: Imperative
                                 Section {
                                     VStack(alignment: .leading) {
                                         Text("IMPERATIVE")
                                             .font(.customFont(font: .montserrat, style: .bold, size: .title3))
-                                            .padding(.bottom, 10)
+                                            .padding(.bottom, 2)
                                         
                                         TenseView(title: "Affirmative", conjugations: details.imperative, language: selectedLanguage)
                                     }
@@ -219,7 +221,7 @@ struct VerbDetailView: View {
         .onAppear {
             loadVerbDetails()
         }
-        .navigationTitle("")
+        .navigationTitle(selectedVerb.capitalized)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.white, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)

@@ -26,7 +26,6 @@
 		2FDC224F2C179742003507B5 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FDC224B2C179741003507B5 /* Montserrat-Light.ttf */; };
 		2FDC22532C179ECD003507B5 /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDC22522C179ECD003507B5 /* FontStyle.swift */; };
 		2FDC22552C17A1F4003507B5 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FDC22542C17A1F4003507B5 /* Montserrat-Medium.ttf */; };
-		2FDC22572C17A899003507B5 /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDC22562C17A899003507B5 /* LanguagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +49,6 @@
 		2FDC22512C179BAB003507B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2FDC22522C179ECD003507B5 /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
 		2FDC22542C17A1F4003507B5 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
-		2FDC22562C17A899003507B5 /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +94,6 @@
 				2FA9748B2C0E77CD0095566F /* ContentView.swift */,
 				2FA974AC2C10754E0095566F /* VerbDetailView.swift */,
 				2F1BFA222C131B9B00C6D8DF /* TenseView.swift */,
-				2FDC22562C17A899003507B5 /* LanguagePicker.swift */,
 				2FDC22462C14B967003507B5 /* CustomSearchBar.swift */,
 				2FA9748D2C0E77CE0095566F /* Assets.xcassets */,
 				2FA9748F2C0E77CE0095566F /* Preview Content */,
@@ -212,7 +209,6 @@
 				2FDC22452C149A77003507B5 /* AppColors.swift in Sources */,
 				2FDC22532C179ECD003507B5 /* FontStyle.swift in Sources */,
 				2FA974AF2C107D070095566F /* VerbDetails.swift in Sources */,
-				2FDC22572C17A899003507B5 /* LanguagePicker.swift in Sources */,
 				2FDC22472C14B967003507B5 /* CustomSearchBar.swift in Sources */,
 				2FA974AD2C10754E0095566F /* VerbDetailView.swift in Sources */,
 				2FA9748C2C0E77CD0095566F /* ContentView.swift in Sources */,

@@ -42,7 +42,7 @@ struct ContentView: View {
                                 Button(action: {
                                     navigationPath.append(VerbNavigationData(verb: verb, language: selectedLanguage))
                                 }) {
-                                    Text(verb)
+                                    Text(verb.capitalized)
                                 }
                             }
                         }

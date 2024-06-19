@@ -12,18 +12,27 @@ struct VerbDetails {
     var translation: String
     var gerund: String
     var participle: String
-    var indicativePresent: [String: String]
-    var indicativePreterite: [String: String]
-    var indicativeImperfect: [String: String]
-    var indicativeFuture: [String: String]
-    var indicativeConditional: [String: String]
-    var subjunctivePresent: [String: String]
-    var subjunctiveImperfect: [String: String]
-    var subjunctiveFuture: [String: String]
-    var imperative: [String: String]
+    var regularity: String
+    
+    var indicativePresent: [String: Conjugation]
+    var indicativePreterite: [String: Conjugation]
+    var indicativeImperfect: [String: Conjugation]
+    var indicativeFuture: [String: Conjugation]
+    var indicativeConditional: [String: Conjugation]
+    var subjunctivePresent: [String: Conjugation]
+    var subjunctiveImperfect: [String: Conjugation]
+    var subjunctiveFuture: [String: Conjugation]
+    var imperative: [String: Conjugation]
 }
+
 
 struct VerbNavigationData: Hashable {
     let verb: String
     let language: String
+}
+
+
+struct Conjugation {
+    var text: String
+    var isIrregular: Bool
 }

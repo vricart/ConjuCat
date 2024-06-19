@@ -19,6 +19,7 @@ class DatabaseManager {
     private let gerund = Expression<String>("gerund")
     private let participle = Expression<String>("participle")
     private let translation = Expression<String>("translation")
+    private let regularity = Expression<String>("regularity")
     
     private let conjugationsTable = Table("conjugations")
     private let verb_id = Expression<Int64>("verb_id")
@@ -26,6 +27,7 @@ class DatabaseManager {
     private let mood = Expression<String>("mood")
     private let person = Expression<String>("person")
     private let conjugation = Expression<String>("conjugation")
+    private let is_irregular = Expression<Bool>("is_irregular") // New column for irregular conjugations
     
     private init() {
         connectDatabase()
@@ -89,6 +91,8 @@ class DatabaseManager {
                 let gerund = try verbRow.get(self.gerund)
                 let participle = try verbRow.get(self.participle)
                 
+                let regularity = try verbRow.get(self.regularity)
+                
                 let indicativePresent = fetchConjugations(for: verbId, tense: "Present", mood: "Indicative")
                 let indicativePreterite = fetchConjugations(for: verbId, tense: "Preterite", mood: "Indicative")
                 let indicativeImperfect = fetchConjugations(for: verbId, tense: "Imperfect", mood: "Indicative")
@@ -106,6 +110,7 @@ class DatabaseManager {
                     translation: translation,
                     gerund: gerund,
                     participle: participle,
+                    regularity: regularity,
                     indicativePresent: indicativePresent,
                     indicativePreterite: indicativePreterite,
                     indicativeImperfect: indicativeImperfect,
@@ -140,8 +145,8 @@ class DatabaseManager {
         return nil
     }
     
-    private func fetchConjugations(for verbId: Int64, tense: String, mood: String) -> [String: String] {
-        var conjugations = [String: String]()
+    private func fetchConjugations(for verbId: Int64, tense: String, mood: String) -> [String: Conjugation] {
+        var conjugations = [String: Conjugation]()
         
         do {
             guard let db = db else { return [:] }
@@ -150,8 +155,15 @@ class DatabaseManager {
             
             for conjugationRow in try db.prepare(query) {
                 let person = try conjugationRow.get(self.person)
-                let conjugation = try conjugationRow.get(self.conjugation)
-                conjugations[person] = conjugation
+                let conjugationText = try conjugationRow.get(self.conjugation)
+                let isIrregular: Bool
+                if let isIrregularValue = try? conjugationRow.get(self.is_irregular) {
+                    isIrregular = isIrregularValue
+                } else {
+                    isIrregular = false
+                }
+                print("Person: \(person), Conjugation: \(conjugationText), Is Irregular: \(isIrregular)")
+                conjugations[person] = Conjugation(text: conjugationText, isIrregular: isIrregular)
             }
         } catch {
             print("Failed to fetch conjugations: \(error)")

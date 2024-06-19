@@ -44,14 +44,6 @@ enum CustomFontSize: CGFloat {
 
 extension Font {
     
-    /// Choose your font to set up
-    /// - Parameters:
-    ///   - font: Choose one of your font
-    ///   - style: Make sure the style is available
-    ///   - size: Use prepared sizes for your app
-    ///   - isScaled: Check if your app accessibility prepared
-    /// - Returns: Font ready to show
-    
     static func customFont(
         font: CustomFonts,
         style: CustomFontStyle,
